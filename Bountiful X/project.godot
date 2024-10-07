@@ -14,3 +14,7 @@ config/name="Bountiful X"
 run/main_scene="res://title.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/carrot.png"
+
+[display]
+
+window/stretch/mode="viewport"

@@ -15,7 +15,7 @@ func _ready():
 	print('title ready')
 
 
-# define signals
+# define signal functions
 func on_play_button_pressed():
 	print('play')
 	get_tree().change_scene_to_file('res://farm.tscn')
