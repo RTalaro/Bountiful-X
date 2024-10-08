@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://c110xdrsqmod0"]
+[gd_scene load_steps=10 format=3 uid="uid://c110xdrsqmod0"]
 
 [ext_resource type="Script" path="res://farm.gd" id="1_smejx"]
+[ext_resource type="Texture2D" uid="uid://bmixmelkngomv" path="res://assets/Tilesets/Dirt1.png" id="2_crfn2"]
+[ext_resource type="Texture2D" uid="uid://d2i3dx316fl5a" path="res://assets/Tilesets/Select.png" id="3_o6w1m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pk53p"]
+texture = ExtResource("2_crfn2")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_a8cn7"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_pk53p")
+
+[sub_resource type="GDScript" id="GDScript_u8q14"]
+script/source = "extends TileMapLayer
+
+
+var GridSize = 4
+var Dic = {}
+
+func _ready():
+	for x in GridSize:
+		for y in GridSize:
+			Dic[str(Vector2(x,y))] = {
+				\"type\": \"Dirt\"
+			}
+			set_cell(Vector2(x,y), 0, Vector2i(0,0), 0)
+"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2bj6h"]
+texture = ExtResource("3_o6w1m")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ypyic"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_2bj6h")
+
+[sub_resource type="GDScript" id="GDScript_e2rbo"]
+script/source = "extends TileMapLayer
+
+
+var GridSize = 100
+
+func _process(delta):
+	var tile = local_to_map(get_global_mouse_position())
+	
+	for x in GridSize:
+		for y in GridSize:
+			erase_cell(Vector2(x,y))
+
+	set_cell(tile, 0, Vector2i(0,0), 0)
+"
 
 [node name="Farm" type="Control"]
 layout_mode = 3
@@ -12,6 +64,7 @@ grow_vertical = 2
 script = ExtResource("1_smejx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,3 +72,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.634776, 0.911304, 0.720938, 1)
+
+[node name="Dirt" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_a8cn7")
+script = SubResource("GDScript_u8q14")
+
+[node name="Select" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_ypyic")
+script = SubResource("GDScript_e2rbo")
