@@ -1,17 +1,42 @@
 [gd_scene load_steps=10 format=3 uid="uid://c110xdrsqmod0"]
 
 [ext_resource type="Script" path="res://farm.gd" id="1_smejx"]
-[ext_resource type="Texture2D" uid="uid://bmixmelkngomv" path="res://assets/Tilesets/Dirt1.png" id="2_crfn2"]
+[ext_resource type="Texture2D" uid="uid://chrkosniter6w" path="res://temp_tileset.png" id="2_k5v5n"]
 [ext_resource type="Texture2D" uid="uid://d2i3dx316fl5a" path="res://assets/Tilesets/Select.png" id="3_o6w1m"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pk53p"]
-texture = ExtResource("2_crfn2")
-texture_region_size = Vector2i(128, 128)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47okw"]
+texture = ExtResource("2_k5v5n")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/next_alternative_id = 2
 0:0/0 = 0
+0:0/0/custom_data_0 = "tilled"
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/custom_data_0 = "watered"
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+4:0/0/custom_data_0 = "wheat"
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+6:0/0/custom_data_0 = "corn"
+8:0/size_in_atlas = Vector2i(2, 2)
+8:0/0 = 0
+8:0/0/custom_data_0 = "parsnip"
+10:0/size_in_atlas = Vector2i(2, 2)
+10:0/0 = 0
+10:0/0/custom_data_0 = "carrot"
+12:0/size_in_atlas = Vector2i(2, 2)
+12:0/0 = 0
+12:0/0/custom_data_0 = "plantable"
+14:0/size_in_atlas = Vector2i(2, 2)
+14:0/0 = 0
+14:0/0/custom_data_0 = "nothing"
 
-[sub_resource type="TileSet" id="TileSet_a8cn7"]
-tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_pk53p")
+[sub_resource type="TileSet" id="TileSet_ktkps"]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_47okw")
 
 [sub_resource type="GDScript" id="GDScript_u8q14"]
 script/source = "extends TileMapLayer
@@ -26,7 +51,20 @@ func _ready():
 			Dic[str(Vector2(x,y))] = {
 				\"type\": \"Dirt\"
 			}
-			set_cell(Vector2(x,y), 0, Vector2i(0,0), 0)
+			set_cell(Vector2(x,y), 0, Vector2i(14,0), 0)
+
+func update_tile(position):
+	var mouse_position := local_to_map(position)
+	
+	if mouse_position.x < GridSize and mouse_position.y < GridSize:
+		if (get_cell_tile_data(mouse_position).get_custom_data(\"type\") == \"watered\" and get_parent().inventory_num == 0) or (get_cell_tile_data(mouse_position).get_custom_data(\"type\") == \"tilled\" and get_parent().inventory_num == 2):
+			set_cell(mouse_position, 0, Vector2i(12, 0))
+		elif get_cell_tile_data(mouse_position).get_custom_data(\"type\") == \"plantable\" and get_parent().inventory_num >= 4:
+			set_cell(mouse_position, 0, Vector2i(get_parent().inventory_num, 0))
+		elif get_cell_tile_data(mouse_position).get_custom_data(\"type\") == \"nothing\" and get_parent().inventory_num < 4:
+			set_cell(mouse_position, 0, Vector2i(get_parent().inventory_num, 0))
+		
+	
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2bj6h"]
@@ -35,7 +73,7 @@ texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ypyic"]
-tile_size = Vector2i(128, 128)
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_2bj6h")
 
 [sub_resource type="GDScript" id="GDScript_e2rbo"]
@@ -74,9 +112,10 @@ grow_vertical = 2
 color = Color(0.634776, 0.911304, 0.720938, 1)
 
 [node name="Dirt" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_a8cn7")
+tile_set = SubResource("TileSet_ktkps")
 script = SubResource("GDScript_u8q14")
 
 [node name="Select" type="TileMapLayer" parent="."]
+visible = false
 tile_set = SubResource("TileSet_ypyic")
 script = SubResource("GDScript_e2rbo")
