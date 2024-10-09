@@ -7,7 +7,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# connect signals
+	# Connect signals
 	play_button.button_down.connect(on_play_button_pressed)
 	options_button.button_down.connect(on_options_button_pressed)
 	quit_button.button_down.connect(on_quit_button_pressed)
@@ -15,14 +15,15 @@ func _ready():
 	print('title ready')
 
 
-# define signal functions
 func on_play_button_pressed():
 	print('play')
 	get_tree().change_scene_to_file('res://farm.tscn')
 
+
 func on_options_button_pressed():
 	print('open options')
 	get_tree().change_scene_to_file('res://options.tscn')
+
 
 func on_quit_button_pressed():
 	print('quit')
