@@ -6,6 +6,10 @@ var timer = 60
 var time_left = timer
 
 var seed_count = [0, 0, 0, 0] # In order: carrot, wheat, pumpkin, corn
+var price_list = [10, 5, 20, 15] # In order: carrot, wheat, pumpkin, corn
+
+var previous_discount = 0
+var discount = 0
 
 
 @onready var timer_label = $TimerLabel
@@ -16,14 +20,7 @@ var seed_count = [0, 0, 0, 0] # In order: carrot, wheat, pumpkin, corn
 func _ready() -> void:
 	$Intro.finished.connect(on_intro_finished)
 	
-	$Carrot/Quantity.text = "x " + str(seed_count[0])
-	$Carrot/Cost.text = "10 gold"
-	$Wheat/Quantity.text = "x " + str(seed_count[1])
-	$Wheat/Cost.text = "5 gold"
-	$Pumpkin/Quantity.text = "x " + str(seed_count[2])
-	$Pumpkin/Cost.text = "20 gold"
-	$Corn/Quantity.text = "x " + str(seed_count[3])
-	$Corn/Cost.text = "15 gold"
+	update_text()
 	print('farm ready')
 	
 	start_timer()
@@ -52,31 +49,40 @@ func check_quota() -> void:
 	else:
 		get_tree().change_scene_to_file("res://scenes/title.tscn")
 
+func update_text():
+	$Carrot/Quantity.text = "x " + str(seed_count[0])
+	$Carrot/Cost.text = str(price_list[0]) + " gold"
+	$Wheat/Quantity.text = "x " + str(seed_count[1])
+	$Wheat/Cost.text = str(price_list[1]) + " gold"
+	$Pumpkin/Quantity.text = "x " + str(seed_count[2])
+	$Pumpkin/Cost.text = str(price_list[2]) + " gold"
+	$Corn/Quantity.text = "x " + str(seed_count[3])
+	$Corn/Cost.text = str(price_list[3]) + " gold"
 # Button signals from the shop, all do pretty much the same thing, buying a seed type and incrementing the seed count
 func _on_carrot_pressed() -> void:
-	if money >= 10:
+	if money >= price_list[0]:
 		seed_count[0] += 1
-		money -= 10
+		money -= price_list[0]
 		$Carrot/Quantity.text = "x " + str(seed_count[0])
 
 
 func _on_wheat_pressed() -> void:
-	if money >= 5:
+	if money >= price_list[1]:
 		seed_count[1] += 1
-		money -= 5
+		money -= price_list[1]
 		$Wheat/Quantity.text = "x " + str(seed_count[1])
 
 
 func _on_pumpkin_pressed() -> void:
-	if money >= 20:
+	if money >= price_list[2]:
 		seed_count[2] += 1
-		money -= 20
+		money -= price_list[2]
 		$Pumpkin/Quantity.text = "x " + str(seed_count[2])
 
 func _on_corn_pressed() -> void:
-	if money >= 15:
+	if money >= price_list[3]:
 		seed_count[3] += 1
-		money -= 15
+		money -= price_list[3]
 		$Corn/Quantity.text = "x " + str(seed_count[3])
 
 func on_intro_finished():
@@ -84,3 +90,12 @@ func on_intro_finished():
 	$Intro.queue_free()
 	$Loop.play()
 	
+
+
+func _on_sale_timer_timeout():
+	price_list[previous_discount] += discount # Restoring prices for previously discounted crop
+	var random = randi_range(0, 3)
+	previous_discount = random
+	discount = int(price_list[random] * 0.4)
+	price_list[random] -= discount
+	update_text()

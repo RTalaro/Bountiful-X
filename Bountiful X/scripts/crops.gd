@@ -26,6 +26,8 @@ func update_tile(inv):
 			set_cell(map_pos, 2, Vector2i(inv - 3, 0)) 
 			time_left.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
 			print(time_left)
+		get_parent().get_parent().get_parent().seed_count[inv - 3] -= 1
+		get_parent().get_parent().get_parent().update_text()
 
 
 func grow_tile(pos): # "grows" seed into crop allowing it to be harvested for money

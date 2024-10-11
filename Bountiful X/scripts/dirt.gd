@@ -13,14 +13,15 @@ func _ready():
 func update_tile(inv):
 	var map_pos = local_to_map(get_local_mouse_position())
 	
-	if inv > 0 and inv <= 2: # If holding tool to water or till soil
-		if get_cell_atlas_coords(map_pos).x == 0: # If cell is "empty," till or water it
-			set_cell(map_pos, 0, Vector2i(inv, 0))
-		elif get_cell_atlas_coords(map_pos).x != inv: # If cell is tilled or watered and the opposite is being placed, make cell "plantable"
-			set_cell(map_pos, 0, Vector2i(3, 0))
-	else: # If not holding tool, player must be holding a seed
-		if get_cell_atlas_coords(map_pos).x == 3: # If cell is "plantable"
-			$Crop.update_tile(inv)
+	if get_cell_tile_data(map_pos) != null:
+		if inv > 0 and inv <= 2: # If holding tool to water or till soil
+			if get_cell_atlas_coords(map_pos).x == 0: # If cell is "empty," till or water it
+				set_cell(map_pos, 0, Vector2i(inv, 0))
+			elif get_cell_atlas_coords(map_pos).x != inv: # If cell is tilled or watered and the opposite is being placed, make cell "plantable"
+				set_cell(map_pos, 0, Vector2i(3, 0))
+		else: # If not holding tool, player must be holding a seed
+			if get_cell_atlas_coords(map_pos).x == 3: # If cell is "plantable"
+				$Crop.update_tile(inv)
 
 func harvest_tile():
 	var map_pos = local_to_map(get_local_mouse_position())

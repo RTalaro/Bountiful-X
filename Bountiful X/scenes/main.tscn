@@ -51,26 +51,30 @@ layout_mode = 1
 layout_mode = 0
 offset_right = 508.0
 offset_bottom = 508.0
+scale = Vector2(0.2, 0.2)
 icon = ExtResource("4_qb4wi")
 
 [node name="Carrot" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 1
-offset_top = 51.0
-offset_right = 508.0
-offset_bottom = 559.0
-
-[node name="Corn" parent="." instance=ExtResource("3_vfmdx")]
-layout_mode = 0
 offset_top = 102.0
 offset_right = 508.0
 offset_bottom = 610.0
+scale = Vector2(0.2, 0.2)
+
+[node name="Corn" parent="." instance=ExtResource("3_vfmdx")]
+layout_mode = 0
+offset_top = 204.0
+offset_right = 508.0
+offset_bottom = 712.0
+scale = Vector2(0.2, 0.2)
 icon = ExtResource("5_pqr1p")
 
 [node name="Pumpkin" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
-offset_top = 153.0
+offset_top = 306.0
 offset_right = 508.0
-offset_bottom = 661.0
+offset_bottom = 814.0
+scale = Vector2(0.2, 0.2)
 icon = ExtResource("5_53lsa")
 
 [node name="Intro" type="AudioStreamPlayer" parent="."]
@@ -80,7 +84,12 @@ autoplay = true
 [node name="Loop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_fmp4o")
 
+[node name="SaleTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="pressed" from="Wheat" to="." method="_on_wheat_pressed"]
 [connection signal="pressed" from="Carrot" to="." method="_on_carrot_pressed"]
 [connection signal="pressed" from="Corn" to="." method="_on_corn_pressed"]
 [connection signal="pressed" from="Pumpkin" to="." method="_on_pumpkin_pressed"]
+[connection signal="timeout" from="SaleTimer" to="." method="_on_sale_timer_timeout"]
