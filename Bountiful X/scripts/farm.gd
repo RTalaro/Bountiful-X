@@ -9,13 +9,14 @@ var inventory_num = 0 #1 water plants, 2 till soil, 3 carrot, 4 wheat, 5 pumpkin
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.position.x -= (tile_size * rows * self.scale.x) / 2
+	# Adjusts position so the game is centered
+	self.position.x -= (tile_size * rows * self.scale.x) / 2 
 	self.position.y -= (tile_size * cols * self.scale.y) / 2
 
 func _input(event):
 	# two events, one for mouse one for switching
 	if event is InputEventKey and event.pressed:
-		if int(event.as_text()) < 7:
+		if int(event.as_text()) < 7: # Switches the item that the player is holding with the corresponding number
 			inventory_num = int(event.as_text())
 	
 	if event is InputEventMouseButton and event.pressed:

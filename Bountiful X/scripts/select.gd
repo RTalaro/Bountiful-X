@@ -9,6 +9,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var mouse_position := local_to_map(get_local_mouse_position())
+	
 	clear()
-	if get_parent().get_cell_tile_data(mouse_position) != null:
+	
+	if get_parent().get_cell_tile_data(mouse_position) != null: # Checks if hovering the farm tilemap
 		set_cell(mouse_position, 0, Vector2i(0, 0))

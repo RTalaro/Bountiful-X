@@ -5,7 +5,7 @@ var quota = 20
 var timer = 60
 var time_left = timer
 
-var seed_count = [0, 0, 0, 0]
+var seed_count = [0, 0, 0, 0] # In order: carrot, wheat, pumpkin, corn
 
 
 @onready var timer_label = $TimerLabel
@@ -45,28 +45,28 @@ func check_quota() -> void:
 	else:
 		get_tree().change_scene_to_file("res://scenes/title.tscn")
 
-
-func _on_carrot_pressed():
+# Button signals from the shop, all do pretty much the same thing, buying a seed type and incrementing the seed count
+func _on_carrot_pressed() -> void:
 	if money >= 10:
 		seed_count[0] += 1
 		money -= 10
 		$Carrot/Quantity.text = "x " + str(seed_count[0])
 
 
-func _on_wheat_pressed():
+func _on_wheat_pressed() -> void:
 	if money >= 5:
 		seed_count[1] += 1
 		money -= 5
 		$Wheat/Quantity.text = "x " + str(seed_count[1])
 
 
-func _on_pumpkin_pressed():
+func _on_pumpkin_pressed() -> void:
 	if money >= 20:
 		seed_count[2] += 1
 		money -= 20
 		$Pumpkin/Quantity.text = "x " + str(seed_count[2])
 
-func _on_corn_pressed():
+func _on_corn_pressed() -> void:
 	if money >= 15:
 		seed_count[3] += 1
 		money -= 15
