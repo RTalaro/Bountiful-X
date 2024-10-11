@@ -19,4 +19,7 @@ func _input(event):
 			inventory_num = int(event.as_text())
 	
 	if event is InputEventMouseButton and event.pressed:
-		$Dirt.update_tile(inventory_num)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			$Dirt.update_tile(inventory_num)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			$Dirt.harvest_tile()

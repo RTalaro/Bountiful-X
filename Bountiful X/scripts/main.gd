@@ -5,6 +5,7 @@ var quota = 20
 var timer = 60
 var time_left = timer
 
+
 @onready var timer_label = $TimerLabel
 @onready var quota_label = $QuotaLabel
 
@@ -36,6 +37,6 @@ func check_quota() -> void:
 		quota += 20
 		start_timer()
 	else:
-		pass # Game over screen would be implemented here
+		get_tree().change_scene_to_file("res://scenes/title.tscn")
 
 	

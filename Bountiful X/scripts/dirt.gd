@@ -20,4 +20,14 @@ func update_tile(inv):
 			set_cell(map_pos, 0, Vector2i(3, 0))
 	else:
 		if get_cell_atlas_coords(map_pos).x == 3:
-			$Crops.update_tile(inv)
+			$Crop.update_tile(inv)
+
+func harvest_tile():
+	var map_pos = local_to_map(get_local_mouse_position())
+	
+	var data = $Crop.get_cell_tile_data(map_pos)
+	if $Crop.get_cell_source_id(map_pos) == 1:
+		get_parent().get_parent().money += data.get_custom_data("price")
+		$Crop.erase_cell(map_pos)
+		set_cell(map_pos, 0, Vector2i(0, 0))
+		

@@ -17,7 +17,7 @@ func _ready():
 
 func on_play_button_pressed():
 	print('play')
-	get_tree().change_scene_to_file('res://farm.tscn')
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func on_options_button_pressed():

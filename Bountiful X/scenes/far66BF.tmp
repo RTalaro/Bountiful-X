@@ -28,30 +28,18 @@ sources/0 = SubResource("TileSetAtlasSource_u0qd6")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4pxfn"]
 texture = ExtResource("4_ilh5w")
 0:0/0 = 0
-0:0/0/custom_data_0 = 10
 1:0/0 = 0
-1:0/0/custom_data_0 = 5
 2:0/0 = 0
-2:0/0/custom_data_0 = 25
 3:0/0 = 0
-3:0/0/custom_data_0 = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksoum"]
 texture = ExtResource("5_81bp8")
 0:0/0 = 0
-0:0/0/custom_data_1 = 5
 1:0/0 = 0
-1:0/0/custom_data_1 = 3
 2:0/0 = 0
-2:0/0/custom_data_1 = 4
 3:0/0 = 0
-3:0/0/custom_data_1 = 3
 
 [sub_resource type="TileSet" id="TileSet_0bwao"]
-custom_data_layer_0/name = "price"
-custom_data_layer_0/type = 2
-custom_data_layer_1/name = "time"
-custom_data_layer_1/type = 2
 sources/1 = SubResource("TileSetAtlasSource_4pxfn")
 sources/2 = SubResource("TileSetAtlasSource_ksoum")
 
@@ -85,8 +73,3 @@ script = ExtResource("4_wp7h1")
 [node name="Select" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_t2ug0")
 script = ExtResource("5_0tsyo")
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="Timer" to="Dirt/Crop" method="_on_timer_timeout"]
