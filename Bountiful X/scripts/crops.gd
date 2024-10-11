@@ -5,6 +5,7 @@ extends TileMapLayer
 # if an item is added when a seed is also placed
 var time_left = [] 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,15 +26,18 @@ func update_tile(inv):
 			set_cell(map_pos, 2, Vector2i(inv - 3, 0)) 
 			time_left.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
 			print(time_left)
-	
+
+
 func grow_tile(pos): # "grows" seed into crop allowing it to be harvested for money
 	set_cell(pos, 1, get_cell_atlas_coords(pos))
+
 
 func has_surrounding(map_pos): # Checks if there's any seed or crop surrounding
 	for i in get_surrounding_cells(map_pos):
 		if get_cell_atlas_coords(i) != Vector2i(-1, -1):
 			return true
 	return false
+
 
 func has_surrounding_carrot(map_pos): # Checks if the surrounding tiles has a carrot seed / crop
 	for i in get_surrounding_cells(map_pos):
