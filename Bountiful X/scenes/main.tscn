@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://c110xdrsqmod0"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_q3d33"]
+[ext_resource type="PackedScene" uid="uid://cgxghw6mubqxs" path="res://scenes/farm.tscn" id="2_b42bu"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchor_right = 0.997
+anchor_bottom = 1.003
+offset_right = -0.544067
+offset_bottom = 0.0559692
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3d33")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.634776, 0.911304, 0.720938, 1)
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 50.0
+offset_right = 495.0
+offset_bottom = 73.0
+text = "Timer"
+
+[node name="QuotaLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 94.0
+offset_right = 495.0
+offset_bottom = 117.0
+text = "Quota"
+
+[node name="Farm" parent="." instance=ExtResource("2_b42bu")]
+layout_mode = 1

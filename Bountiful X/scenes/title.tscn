@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://do38kc77ic6wn"]
 
-[ext_resource type="Script" path="res://title.gd" id="1_mtlco"]
+[ext_resource type="Script" path="res://scripts/title.gd" id="1_mtlco"]
 
 [node name="Title" type="Control"]
 layout_mode = 3

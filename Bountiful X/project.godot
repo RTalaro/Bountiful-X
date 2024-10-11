@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="Bountiful X"
-run/main_scene="res://title.tscn"
+run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/carrot.png"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

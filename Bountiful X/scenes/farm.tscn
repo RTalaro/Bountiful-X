@@ -1,0 +1,75 @@
+[gd_scene load_steps=16 format=3 uid="uid://cgxghw6mubqxs"]
+
+[ext_resource type="Script" path="res://scripts/farm.gd" id="1_smejx"]
+[ext_resource type="Texture2D" uid="uid://bvrdm3vxf1ii" path="res://assets/Tilesets/dirt.png" id="2_2m0hw"]
+[ext_resource type="Script" path="res://scripts/dirt.gd" id="3_1hpqy"]
+[ext_resource type="Texture2D" uid="uid://cqu15j8lgw8dg" path="res://assets/Tilesets/Select.png" id="3_tj6i1"]
+[ext_resource type="Texture2D" uid="uid://c6r7jrtr4tigk" path="res://assets/Tilesets/crops.png" id="4_ilh5w"]
+[ext_resource type="Script" path="res://scenes/crops.gd" id="4_wp7h1"]
+[ext_resource type="Script" path="res://scripts/select.gd" id="5_0tsyo"]
+[ext_resource type="Texture2D" uid="uid://bimhex6mx1qrk" path="res://assets/Tilesets/seeds.png" id="5_81bp8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0qd6"]
+texture = ExtResource("2_2m0hw")
+0:0/0 = 0
+0:0/0/custom_data_0 = "empty"
+1:0/0 = 0
+1:0/0/custom_data_0 = "water"
+2:0/0 = 0
+2:0/0/custom_data_0 = "tilled"
+3:0/0 = 0
+3:0/0/custom_data_0 = "farmable"
+
+[sub_resource type="TileSet" id="TileSet_oke54"]
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_u0qd6")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4pxfn"]
+texture = ExtResource("4_ilh5w")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksoum"]
+texture = ExtResource("5_81bp8")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0bwao"]
+sources/1 = SubResource("TileSetAtlasSource_4pxfn")
+sources/2 = SubResource("TileSetAtlasSource_ksoum")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1210"]
+texture = ExtResource("3_tj6i1")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t2ug0"]
+sources/0 = SubResource("TileSetAtlasSource_v1210")
+
+[node name="Farm" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_smejx")
+
+[node name="Dirt" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_oke54")
+script = ExtResource("3_1hpqy")
+
+[node name="Crops" type="TileMapLayer" parent="Dirt"]
+tile_set = SubResource("TileSet_0bwao")
+script = ExtResource("4_wp7h1")
+
+[node name="Select" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_t2ug0")
+script = ExtResource("5_0tsyo")

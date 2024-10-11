@@ -1,9 +1,5 @@
 extends Control
 
-
-
-var inventory_num = 0
-# 1 till soil, 2 water plants, 3 wheat, 4 corn, 5 parsnip (?), 6 carrots
 var money = 0
 var quota = 20
 var timer = 60
@@ -42,12 +38,4 @@ func check_quota() -> void:
 	else:
 		pass # Game over screen would be implemented here
 
-
-func _input(event) -> void:
-	if event is InputEventKey and event.pressed:
-		if int(event.as_text()) < 7:
-			inventory_num = 2 * int(event.as_text()) - 2
-	
-	if event is InputEventMouseButton and event.pressed:
-		$Dirt.update_tile(event.position)
 	
