@@ -4,7 +4,7 @@ extends Control
 @export var cols = 9
 @export var tile_size = 16
 
-var inventory_num = 0 #1 water plants, 2 till soil, 3 wheat, 4 corn, 5 parsnip, 6 carrots
+var inventory_num = 0 #1 water plants, 2 till soil, 3 carrot, 4 wheat, 5 pumpkin, 6 corn
 
 
 # Called when the node enters the scene tree for the first time.

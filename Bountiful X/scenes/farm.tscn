@@ -39,11 +39,11 @@ texture = ExtResource("4_ilh5w")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksoum"]
 texture = ExtResource("5_81bp8")
 0:0/0 = 0
-0:0/0/custom_data_1 = 5
+0:0/0/custom_data_1 = 10
 1:0/0 = 0
 1:0/0/custom_data_1 = 3
 2:0/0 = 0
-2:0/0/custom_data_1 = 4
+2:0/0/custom_data_1 = 8
 3:0/0 = 0
 3:0/0/custom_data_1 = 3
 
