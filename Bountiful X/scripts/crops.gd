@@ -12,16 +12,17 @@ func update_tile(inv):
 	var map_pos = local_to_map(get_local_mouse_position())
 	var boost = 0
 	
-	if get_cell_source_id(map_pos) == -1:
-		if inv == 5:
-			if !has_surrounding(map_pos):
-				boost = 4
-		if inv == 3:
-			if has_surrounding_carrot(map_pos):
-				boost = 5
-		set_cell(map_pos, 2, Vector2i(inv - 3, 0)) 
-		time_left.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
-		print(time_left)
+	if get_parent().get_parent().get_parent().seed_count[inv - 3] > 0:
+		if get_cell_source_id(map_pos) == -1:
+			if inv == 5:
+				if !has_surrounding(map_pos):
+					boost = 4
+			if inv == 3:
+				if has_surrounding_carrot(map_pos):
+					boost = 5
+			set_cell(map_pos, 2, Vector2i(inv - 3, 0)) 
+			time_left.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
+			print(time_left)
 	
 func grow_tile(pos):
 	set_cell(pos, 1, get_cell_atlas_coords(pos))

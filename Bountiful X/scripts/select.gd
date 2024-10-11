@@ -10,4 +10,5 @@ func _ready():
 func _process(delta):
 	var mouse_position := local_to_map(get_local_mouse_position())
 	clear()
-	set_cell(mouse_position, 0, Vector2i(0, 0))
+	if get_parent().get_cell_tile_data(mouse_position) != null:
+		set_cell(mouse_position, 0, Vector2i(0, 0))

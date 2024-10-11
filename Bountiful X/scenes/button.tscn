@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://q2twfsbn0pr7"]
+
+[ext_resource type="Texture2D" uid="uid://bq7agunu04kkm" path="res://assets/crops/carrot.png" id="1_lnyx5"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("1_lnyx5")
+
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 56.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "x 0"
+horizontal_alignment = 2
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -51.5
+offset_right = 80.0
+offset_bottom = -28.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "10 gold"

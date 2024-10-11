@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvrdm3vxf1ii"
-path="res://.godot/imported/dirt.png-269d8d78d463e160ff0c4e24a47431bb.ctex"
+uid="uid://bot0m0svy51pp"
+path="res://.godot/imported/pumpkin.png-7c67020ef7ba31ecef0745831c93fdfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/dirt.png"
-dest_files=["res://.godot/imported/dirt.png-269d8d78d463e160ff0c4e24a47431bb.ctex"]
+source_file="res://assets/crops/pumpkin.png"
+dest_files=["res://.godot/imported/pumpkin.png-7c67020ef7ba31ecef0745831c93fdfb.ctex"]
 
 [params]
 
