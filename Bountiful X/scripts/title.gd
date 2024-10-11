@@ -22,7 +22,7 @@ func on_play_button_pressed():
 
 func on_options_button_pressed():
 	print('open options')
-	get_tree().change_scene_to_file('res://options.tscn')
+	get_tree().change_scene_to_file('res://scenes/options.tscn')
 
 
 func on_quit_button_pressed():
