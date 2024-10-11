@@ -8,6 +8,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Connect signals
+	$Intro.finished.connect(on_intro_finished)
 	play_button.button_down.connect(on_play_button_pressed)
 	options_button.button_down.connect(on_options_button_pressed)
 	quit_button.button_down.connect(on_quit_button_pressed)
@@ -28,3 +29,9 @@ func on_options_button_pressed():
 func on_quit_button_pressed():
 	print('quit')
 	get_tree().quit()
+
+
+func on_intro_finished():
+	print('intro finished')
+	$Intro.queue_free()
+	$Loop.play()

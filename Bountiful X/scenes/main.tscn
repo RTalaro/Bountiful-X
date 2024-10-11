@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c110xdrsqmod0"]
+[gd_scene load_steps=9 format=3 uid="uid://c110xdrsqmod0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_q3d33"]
 [ext_resource type="PackedScene" uid="uid://cgxghw6mubqxs" path="res://scenes/farm.tscn" id="2_b42bu"]
 [ext_resource type="PackedScene" uid="uid://q2twfsbn0pr7" path="res://scenes/button.tscn" id="3_vfmdx"]
 [ext_resource type="Texture2D" uid="uid://dbvmx80rpcv3f" path="res://assets/crops/wheat.png" id="4_qb4wi"]
-[ext_resource type="Texture2D" uid="uid://bot0m0svy51pp" path="res://assets/crops/pumpkin.png" id="5_53lsa"]
+[ext_resource type="Texture2D" uid="uid://d18aac4aii7uk" path="res://assets/crops/pumpkin.png" id="5_53lsa"]
 [ext_resource type="Texture2D" uid="uid://bok280j1atw47" path="res://assets/crops/corn.png" id="5_pqr1p"]
+[ext_resource type="AudioStream" uid="uid://b6d7kudldhitr" path="res://assets/tracks/intro.mp3" id="7_j43fu"]
+[ext_resource type="AudioStream" uid="uid://drd2ih0h2s2wg" path="res://assets/tracks/loop.mp3" id="8_fmp4o"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -45,31 +47,40 @@ text = "Quota"
 [node name="Farm" parent="." instance=ExtResource("2_b42bu")]
 layout_mode = 1
 
-[node name="Carrot" parent="." instance=ExtResource("3_vfmdx")]
-layout_mode = 0
-
 [node name="Wheat" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
+offset_right = 508.0
+offset_bottom = 508.0
+icon = ExtResource("4_qb4wi")
+
+[node name="Carrot" parent="." instance=ExtResource("3_vfmdx")]
+layout_mode = 1
 offset_top = 51.0
 offset_right = 508.0
 offset_bottom = 559.0
-icon = ExtResource("4_qb4wi")
 
-[node name="Pumpkin" parent="." instance=ExtResource("3_vfmdx")]
+[node name="Corn" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
 offset_top = 102.0
 offset_right = 508.0
 offset_bottom = 610.0
-icon = ExtResource("5_53lsa")
+icon = ExtResource("5_pqr1p")
 
-[node name="Corn" parent="." instance=ExtResource("3_vfmdx")]
+[node name="Pumpkin" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
 offset_top = 153.0
 offset_right = 508.0
 offset_bottom = 661.0
-icon = ExtResource("5_pqr1p")
+icon = ExtResource("5_53lsa")
 
-[connection signal="pressed" from="Carrot" to="." method="_on_carrot_pressed"]
+[node name="Intro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j43fu")
+autoplay = true
+
+[node name="Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fmp4o")
+
 [connection signal="pressed" from="Wheat" to="." method="_on_wheat_pressed"]
-[connection signal="pressed" from="Pumpkin" to="." method="_on_pumpkin_pressed"]
+[connection signal="pressed" from="Carrot" to="." method="_on_carrot_pressed"]
 [connection signal="pressed" from="Corn" to="." method="_on_corn_pressed"]
+[connection signal="pressed" from="Pumpkin" to="." method="_on_pumpkin_pressed"]

@@ -14,11 +14,18 @@ var seed_count = [0, 0, 0, 0] # In order: carrot, wheat, pumpkin, corn
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print('farm ready')
+	$Intro.finished.connect(on_intro_finished)
+	
 	$Carrot/Quantity.text = "x " + str(seed_count[0])
+	$Carrot/Cost.text = "10 gold"
 	$Wheat/Quantity.text = "x " + str(seed_count[1])
+	$Wheat/Cost.text = "5 gold"
 	$Pumpkin/Quantity.text = "x " + str(seed_count[2])
+	$Pumpkin/Cost.text = "20 gold"
 	$Corn/Quantity.text = "x " + str(seed_count[3])
+	$Corn/Cost.text = "15 gold"
+	print('farm ready')
+	
 	start_timer()
 
 
@@ -71,3 +78,9 @@ func _on_corn_pressed() -> void:
 		seed_count[3] += 1
 		money -= 15
 		$Corn/Quantity.text = "x " + str(seed_count[3])
+
+func on_intro_finished():
+	print('intro finished')
+	$Intro.queue_free()
+	$Loop.play()
+	
