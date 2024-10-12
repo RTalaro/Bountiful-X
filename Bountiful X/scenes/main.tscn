@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c110xdrsqmod0"]
+[gd_scene load_steps=12 format=3 uid="uid://c110xdrsqmod0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_q3d33"]
 [ext_resource type="PackedScene" uid="uid://cgxghw6mubqxs" path="res://scenes/farm.tscn" id="2_b42bu"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bok280j1atw47" path="res://assets/crops/corn.png" id="5_pqr1p"]
 [ext_resource type="AudioStream" uid="uid://b6d7kudldhitr" path="res://assets/tracks/intro.mp3" id="7_j43fu"]
 [ext_resource type="AudioStream" uid="uid://drd2ih0h2s2wg" path="res://assets/tracks/loop.mp3" id="8_fmp4o"]
+[ext_resource type="Texture2D" uid="uid://7p52kn417vag" path="res://assets/actions/water.png" id="9_3jjau"]
+[ext_resource type="Texture2D" uid="uid://cg6fcsh12o3ea" path="res://assets/select_inv.png" id="10_g0uch"]
+[ext_resource type="Texture2D" uid="uid://cutvfjrkcnhey" path="res://assets/actions/till.png" id="11_fjn6i"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -49,31 +52,36 @@ layout_mode = 1
 
 [node name="Wheat" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 345.0
 offset_right = 508.0
-offset_bottom = 508.0
+offset_bottom = 853.0
 scale = Vector2(0.2, 0.2)
 icon = ExtResource("4_qb4wi")
 
 [node name="Carrot" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 1
-offset_top = 102.0
+offset_left = 7.10543e-15
+offset_top = 243.0
 offset_right = 508.0
-offset_bottom = 610.0
+offset_bottom = 751.0
 scale = Vector2(0.2, 0.2)
 
 [node name="Corn" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
-offset_top = 204.0
+offset_left = 0.0
+offset_top = 548.0
 offset_right = 508.0
-offset_bottom = 712.0
+offset_bottom = 1056.0
 scale = Vector2(0.2, 0.2)
 icon = ExtResource("5_pqr1p")
 
 [node name="Pumpkin" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
-offset_top = 306.0
+offset_left = 4.23516e-22
+offset_top = 447.0
 offset_right = 508.0
-offset_bottom = 814.0
+offset_bottom = 955.0
 scale = Vector2(0.2, 0.2)
 icon = ExtResource("5_53lsa")
 
@@ -87,6 +95,31 @@ stream = ExtResource("8_fmp4o")
 [node name="SaleTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="Water" type="Button" parent="."]
+layout_mode = 0
+offset_right = 508.0
+offset_bottom = 508.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("9_3jjau")
+
+[node name="SelectInv" type="Sprite2D" parent="Water"]
+position = Vector2(255, 255)
+scale = Vector2(5.1, 5.1)
+texture = ExtResource("10_g0uch")
+
+[node name="Till" type="Button" parent="."]
+layout_mode = 0
+offset_top = 102.0
+offset_right = 508.0
+offset_bottom = 610.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("11_fjn6i")
+
+[node name="SelectInv" type="Sprite2D" parent="Till"]
+position = Vector2(255, 255)
+scale = Vector2(5.1, 5.1)
+texture = ExtResource("10_g0uch")
 
 [connection signal="pressed" from="Wheat" to="." method="_on_wheat_pressed"]
 [connection signal="pressed" from="Carrot" to="." method="_on_carrot_pressed"]

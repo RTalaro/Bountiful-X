@@ -20,6 +20,13 @@ var discount = 0
 func _ready() -> void:
 	$Intro.finished.connect(on_intro_finished)
 	
+	$Water/SelectInv.visible = false
+	$Till/SelectInv.visible = false
+	$Carrot/SelectInv.visible = false
+	$Wheat/SelectInv.visible = false
+	$Pumpkin/SelectInv.visible = false
+	$Corn/SelectInv.visible = false
+	
 	update_text()
 	print('farm ready')
 	
@@ -34,6 +41,28 @@ func _process(delta) -> void:
 		quota_label.text = "Quota: $" + str(quota) + " | Money: $" + str(money)
 	else:
 		check_quota()
+		
+func select_inv_updater():
+	$Water/SelectInv.visible = false
+	$Till/SelectInv.visible = false
+	
+	$Carrot/SelectInv.visible = false
+	$Wheat/SelectInv.visible = false
+	$Pumpkin/SelectInv.visible = false
+	$Corn/SelectInv.visible = false
+	
+	if $Farm.inventory_num == 1:
+		$Water/SelectInv.visible = true
+	elif $Farm.inventory_num == 2:
+		$Till/SelectInv.visible = true
+	elif $Farm.inventory_num == 3:
+		$Carrot/SelectInv.visible = true
+	elif $Farm.inventory_num == 4:
+		$Wheat/SelectInv.visible = true
+	elif $Farm.inventory_num == 5:
+		$Pumpkin/SelectInv.visible = true
+	elif $Farm.inventory_num == 6:
+		$Corn/SelectInv.visible = true
 
 
 func start_timer() -> void:
@@ -90,7 +119,6 @@ func on_intro_finished():
 	$Intro.queue_free()
 	$Loop.play()
 	
-
 
 func _on_sale_timer_timeout():
 	price_list[previous_discount] += discount # Restoring prices for previously discounted crop

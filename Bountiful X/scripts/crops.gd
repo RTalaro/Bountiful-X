@@ -4,6 +4,7 @@ extends TileMapLayer
 # Works since get_used_tiles returns based on when they were placed so time_left will always match
 # if an item is added when a seed is also placed
 var time_left = [] 
+var time_left_final = [] 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +15,16 @@ func _ready():
 func update_tile(inv):
 	var map_pos = local_to_map(get_local_mouse_position())
 	var boost = 0
+	
+	if inv == 1:
+		if get_cell_source_id(map_pos) == 0:
+			if get_cell_atlas_coords(map_pos) == Vector2i(2, 0):
+				if !has_surrounding(map_pos):
+					boost = 4
+			if get_cell_atlas_coords(map_pos) == Vector2i(0, 0):
+				if has_surrounding_carrot(map_pos):
+					boost = 5
+			time_left_final.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
 	
 	if get_parent().get_parent().get_parent().seed_count[inv - 3] > 0: # Checking if the player has enough seeds to even plant
 		if get_cell_source_id(map_pos) == -1:
@@ -30,7 +41,11 @@ func update_tile(inv):
 		get_parent().get_parent().get_parent().update_text()
 
 
-func grow_tile(pos): # "grows" seed into crop allowing it to be harvested for money
+func grow_tile(pos): # "grows" seed into baby crop
+	get_parent().set_cell(pos, 0, Vector2i(2, 0))
+	set_cell(pos, 0, get_cell_atlas_coords(pos))
+	
+func grow_tile_final(pos): # "grows" seed into crop allowing it to be harvested for money
 	set_cell(pos, 1, get_cell_atlas_coords(pos))
 
 
@@ -55,4 +70,10 @@ func _on_timer_timeout():
 		if time_left[i] <= 0:
 			grow_tile(get_used_cells_by_id(2)[i])
 			time_left.remove_at(i)
+			
+	for i in range(time_left_final.size() - 1, -1, -1):
+		time_left_final[i] -= 1
+		if time_left_final[i] <= 0:
+			grow_tile_final(get_used_cells_by_id(0)[i])
+			time_left_final.remove_at(i)
 	print(time_left)

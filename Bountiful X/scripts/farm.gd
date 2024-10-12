@@ -25,6 +25,7 @@ func _input(event):
 	if event is InputEventKey and event.pressed:
 		if int(event.as_text()) < 7: # Switches the item that the player is holding with the corresponding number
 			inventory_num = int(event.as_text())
+			get_parent().select_inv_updater()
 			# tool_icon[inventory_num].scale = Vector2(0.05, 0.05)
 			# Input.set_custom_mouse_cursor(tool_icon[inventory_num])
 	
@@ -33,3 +34,4 @@ func _input(event):
 			$Dirt.update_tile(inventory_num)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			$Dirt.harvest_tile()
+			

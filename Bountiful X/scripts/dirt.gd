@@ -5,7 +5,6 @@ extends TileMapLayer
 func _ready():
 	for y in range(get_parent().rows): # Places the dirt in the middle as well as centers it
 		for x in range(get_parent().cols):
-			var toggle = ((x + y) % 2)
 			set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 
 
@@ -14,6 +13,9 @@ func update_tile(inv):
 	var map_pos = local_to_map(get_local_mouse_position())
 	
 	if get_cell_tile_data(map_pos) != null:
+		if inv == 1 or inv > 3:
+			if get_cell_atlas_coords(map_pos).x == 2:
+				$Crop.update_tile(inv)
 		if inv > 0 and inv <= 2: # If holding tool to water or till soil
 			if get_cell_atlas_coords(map_pos).x == 0: # If cell is "empty," till or water it
 				set_cell(map_pos, 0, Vector2i(inv, 0))

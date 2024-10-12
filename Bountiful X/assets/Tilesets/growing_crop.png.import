@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g7hmfgqb6sd3"
-path="res://.godot/imported/temp_tileset.png-99c1de8da7155e4a2d8f09ff6ed546ad.ctex"
+uid="uid://dgxwn25o3cch7"
+path="res://.godot/imported/growing_crop.png-1dd63d5d3086994b96f00373e462959c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tilesets/temp_tileset.png"
-dest_files=["res://.godot/imported/temp_tileset.png-99c1de8da7155e4a2d8f09ff6ed546ad.ctex"]
+source_file="res://assets/Tilesets/growing_crop.png"
+dest_files=["res://.godot/imported/growing_crop.png-1dd63d5d3086994b96f00373e462959c.ctex"]
 
 [params]
 

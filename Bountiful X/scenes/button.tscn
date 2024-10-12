@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://q2twfsbn0pr7"]
+[gd_scene load_steps=3 format=3 uid="uid://q2twfsbn0pr7"]
 
 [ext_resource type="Texture2D" uid="uid://bq7agunu04kkm" path="res://assets/crops/carrot.png" id="1_lnyx5"]
+[ext_resource type="Texture2D" uid="uid://cg6fcsh12o3ea" path="res://assets/select_inv.png" id="2_21clv"]
 
 [node name="Button" type="Button"]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 511.0
+offset_bottom = 511.0
 scale = Vector2(0.1, 0.1)
 icon = ExtResource("1_lnyx5")
 
@@ -40,3 +43,8 @@ grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(5, 5)
 text = "10 gold"
+
+[node name="SelectInv" type="Sprite2D" parent="."]
+position = Vector2(255, 255)
+scale = Vector2(5.1, 5.1)
+texture = ExtResource("2_21clv")
