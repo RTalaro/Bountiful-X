@@ -37,8 +37,8 @@ func _ready() -> void:
 func _process(delta) -> void:
 	if time_left > 0:
 		time_left -= delta
-		timer_label.text = "Time left: " + str(floor(time_left))
-		quota_label.text = "Quota: $" + str(quota) + " | Money: $" + str(money)
+		timer_label.text = str(floor(time_left)) + "s"
+		quota_label.text = "$" + str(quota)
 	else:
 		check_quota()
 		
@@ -127,3 +127,11 @@ func _on_sale_timer_timeout():
 	discount = int(price_list[random] * 0.4)
 	price_list[random] -= discount
 	update_text()
+
+
+func _on_water_pressed() -> void:
+	$Farm.inventory_num = 1
+
+
+func _on_till_pressed() -> void:
+	$Farm.inventory_num = 2

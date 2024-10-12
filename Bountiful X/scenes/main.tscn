@@ -32,22 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.634776, 0.911304, 0.720938, 1)
 
-[node name="TimerLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 455.0
-offset_top = 50.0
-offset_right = 495.0
-offset_bottom = 73.0
-text = "Timer"
-
-[node name="QuotaLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 455.0
-offset_top = 94.0
-offset_right = 495.0
-offset_bottom = 117.0
-text = "Quota"
-
 [node name="Farm" parent="." instance=ExtResource("2_b42bu")]
 layout_mode = 1
 scale = Vector2(3.5, 3.5)
@@ -56,6 +40,26 @@ scale = Vector2(3.5, 3.5)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_17iw5")
 offset = Vector2(191, 95.75)
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 913.0
+offset_top = 331.0
+offset_right = 1053.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Timer"
+
+[node name="QuotaLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 861.0
+offset_top = 173.0
+offset_right = 981.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Quota"
 
 [node name="Wheat" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
@@ -133,3 +137,5 @@ texture = ExtResource("10_g0uch")
 [connection signal="pressed" from="Corn" to="." method="_on_corn_pressed"]
 [connection signal="pressed" from="Pumpkin" to="." method="_on_pumpkin_pressed"]
 [connection signal="timeout" from="SaleTimer" to="." method="_on_sale_timer_timeout"]
+[connection signal="pressed" from="Water" to="." method="_on_water_pressed"]
+[connection signal="pressed" from="Till" to="." method="_on_till_pressed"]
