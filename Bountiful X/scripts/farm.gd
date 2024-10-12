@@ -1,7 +1,7 @@
 extends Control
 
-@export var rows = 9
-@export var cols = 9
+@export var rows = 8
+@export var cols = 8
 @export var tile_size = 16
 
 var inventory_num = 0 #1 water plants, 2 till soil, 3 carrot, 4 wheat, 5 pumpkin, 6 corn

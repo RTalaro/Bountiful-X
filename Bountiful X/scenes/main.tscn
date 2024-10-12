@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c110xdrsqmod0"]
+[gd_scene load_steps=13 format=3 uid="uid://c110xdrsqmod0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_q3d33"]
+[ext_resource type="Texture2D" uid="uid://cy3l6ofl1kdsy" path="res://assets/ui/ui.png" id="2_17iw5"]
 [ext_resource type="PackedScene" uid="uid://cgxghw6mubqxs" path="res://scenes/farm.tscn" id="2_b42bu"]
 [ext_resource type="PackedScene" uid="uid://q2twfsbn0pr7" path="res://scenes/button.tscn" id="3_vfmdx"]
 [ext_resource type="Texture2D" uid="uid://dbvmx80rpcv3f" path="res://assets/crops/wheat.png" id="4_qb4wi"]
@@ -49,6 +50,12 @@ text = "Quota"
 
 [node name="Farm" parent="." instance=ExtResource("2_b42bu")]
 layout_mode = 1
+scale = Vector2(3.5, 3.5)
+
+[node name="UI Frame" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_17iw5")
+offset = Vector2(191, 95.75)
 
 [node name="Wheat" parent="." instance=ExtResource("3_vfmdx")]
 layout_mode = 0
