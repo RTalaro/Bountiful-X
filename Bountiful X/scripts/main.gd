@@ -89,6 +89,8 @@ func update_text():
 	$Corn/Cost.text = str(price_list[3]) + " gold"
 # Button signals from the shop, all do pretty much the same thing, buying a seed type and incrementing the seed count
 func _on_carrot_pressed() -> void:
+	$Farm.inventory_num = 3
+	select_inv_updater()
 	if money >= price_list[0]:
 		seed_count[0] += 1
 		money -= price_list[0]
@@ -96,6 +98,8 @@ func _on_carrot_pressed() -> void:
 
 
 func _on_wheat_pressed() -> void:
+	$Farm.inventory_num = 4
+	select_inv_updater()
 	if money >= price_list[1]:
 		seed_count[1] += 1
 		money -= price_list[1]
@@ -103,12 +107,16 @@ func _on_wheat_pressed() -> void:
 
 
 func _on_pumpkin_pressed() -> void:
+	$Farm.inventory_num = 5
+	select_inv_updater()
 	if money >= price_list[2]:
 		seed_count[2] += 1
 		money -= price_list[2]
 		$Pumpkin/Quantity.text = "x " + str(seed_count[2])
 
 func _on_corn_pressed() -> void:
+	$Farm.inventory_num = 6
+	select_inv_updater()
 	if money >= price_list[3]:
 		seed_count[3] += 1
 		money -= price_list[3]

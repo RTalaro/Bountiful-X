@@ -36,17 +36,18 @@ color = Color(0.634776, 0.911304, 0.720938, 1)
 layout_mode = 1
 scale = Vector2(3.5, 3.5)
 
-[node name="UI Frame" type="Sprite2D" parent="."]
+[node name="Ui" type="Sprite2D" parent="."]
+position = Vector2(304, 55)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_17iw5")
-offset = Vector2(191, 95.75)
+centered = false
 
 [node name="TimerLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 913.0
-offset_top = 331.0
-offset_right = 1053.0
-offset_bottom = 400.0
+offset_left = 894.0
+offset_top = 329.0
+offset_right = 1034.0
+offset_bottom = 398.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Timer"

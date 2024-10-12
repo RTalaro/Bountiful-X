@@ -18,27 +18,27 @@ func update_tile(inv):
 	
 	if inv == 1:
 		if get_cell_source_id(map_pos) == 0:
-			if get_cell_atlas_coords(map_pos) == Vector2i(2, 0):
+			if get_cell_atlas_coords(map_pos) == Vector2i(0, 0):
 				if !has_surrounding(map_pos):
 					boost = 4
-			if get_cell_atlas_coords(map_pos) == Vector2i(0, 0):
-				if has_surrounding_carrot(map_pos):
+			if get_cell_atlas_coords(map_pos) == Vector2i(2, 0):
+				if has_surrounding_pumpkin(map_pos):
 					boost = 5
 			time_left_final.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
 	
 	if get_parent().get_parent().get_parent().seed_count[inv - 3] > 0: # Checking if the player has enough seeds to even plant
 		if get_cell_source_id(map_pos) == -1:
-			if inv == 5: # Checks if it's a pumpkin and if there's nothing surrounding then it gets a small buff
+			if inv == 3: # Checks if it's a carrot and if there's nothing surrounding then it gets a small buff
 				if !has_surrounding(map_pos):
 					boost = 4
-			if inv == 3: # Checks if it's a carrot and if there's at least one surrounding carrot then it gets a small buff
-				if has_surrounding_carrot(map_pos):
+			if inv == 5: # Checks if it's a punpkin and if there's at least one surrounding carrot then it gets a small buff
+				if has_surrounding_pumpkin(map_pos):
 					boost = 5
 			set_cell(map_pos, 2, Vector2i(inv - 3, 0)) 
 			time_left.append(get_cell_tile_data(map_pos).get_custom_data("time") - boost)
 			print(time_left)
-		get_parent().get_parent().get_parent().seed_count[inv - 3] -= 1
-		get_parent().get_parent().get_parent().update_text()
+			get_parent().get_parent().get_parent().seed_count[inv - 3] -= 1
+			get_parent().get_parent().get_parent().update_text()
 
 
 func grow_tile(pos): # "grows" seed into baby crop
@@ -56,9 +56,9 @@ func has_surrounding(map_pos): # Checks if there's any seed or crop surrounding
 	return false
 
 
-func has_surrounding_carrot(map_pos): # Checks if the surrounding tiles has a carrot seed / crop
+func has_surrounding_pumpkin(map_pos): # Checks if the surrounding tiles has a pumpkin seed / crop
 	for i in get_surrounding_cells(map_pos):
-		if get_cell_atlas_coords(i) == Vector2i(0, 0):
+		if get_cell_atlas_coords(i) == Vector2i(2, 0):
 			return true
 	return false
 

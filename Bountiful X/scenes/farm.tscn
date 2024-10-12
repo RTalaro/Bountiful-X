@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=3 uid="uid://cgxghw6mubqxs"]
 
 [ext_resource type="Script" path="res://scripts/farm.gd" id="1_smejx"]
-[ext_resource type="Texture2D" uid="uid://bvrdm3vxf1ii" path="res://assets/Tilesets/dirt.png" id="2_2m0hw"]
+[ext_resource type="Texture2D" uid="uid://bvrdm3vxf1ii" path="res://assets/tilesets/dirt.png" id="2_2m0hw"]
 [ext_resource type="Script" path="res://scripts/dirt.gd" id="3_1hpqy"]
-[ext_resource type="Texture2D" uid="uid://cqu15j8lgw8dg" path="res://assets/Tilesets/Select.png" id="3_tj6i1"]
-[ext_resource type="Texture2D" uid="uid://dgxwn25o3cch7" path="res://assets/Tilesets/growing_crop.png" id="4_fakry"]
-[ext_resource type="Texture2D" uid="uid://c6r7jrtr4tigk" path="res://assets/Tilesets/crops.png" id="4_ilh5w"]
+[ext_resource type="Texture2D" uid="uid://cqu15j8lgw8dg" path="res://assets/tilesets/Select.png" id="3_tj6i1"]
+[ext_resource type="Texture2D" uid="uid://dgxwn25o3cch7" path="res://assets/tilesets/growing_crop.png" id="4_fakry"]
+[ext_resource type="Texture2D" uid="uid://c6r7jrtr4tigk" path="res://assets/tilesets/crops.png" id="4_ilh5w"]
 [ext_resource type="Script" path="res://scripts/crops.gd" id="4_wp7h1"]
 [ext_resource type="Script" path="res://scripts/select.gd" id="5_0tsyo"]
-[ext_resource type="Texture2D" uid="uid://bimhex6mx1qrk" path="res://assets/Tilesets/seeds.png" id="5_81bp8"]
+[ext_resource type="Texture2D" uid="uid://bimhex6mx1qrk" path="res://assets/tilesets/seeds.png" id="5_81bp8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0qd6"]
 texture = ExtResource("2_2m0hw")
@@ -25,6 +25,13 @@ texture = ExtResource("2_2m0hw")
 custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_u0qd6")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1210"]
+texture = ExtResource("3_tj6i1")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t2ug0"]
+sources/0 = SubResource("TileSetAtlasSource_v1210")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ud3c3"]
 texture = ExtResource("4_fakry")
@@ -67,13 +74,6 @@ sources/1 = SubResource("TileSetAtlasSource_4pxfn")
 sources/2 = SubResource("TileSetAtlasSource_ksoum")
 sources/0 = SubResource("TileSetAtlasSource_ud3c3")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1210"]
-texture = ExtResource("3_tj6i1")
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_t2ug0"]
-sources/0 = SubResource("TileSetAtlasSource_v1210")
-
 [node name="Farm" type="Control"]
 layout_mode = 3
 anchors_preset = 8
@@ -90,13 +90,13 @@ script = ExtResource("1_smejx")
 tile_set = SubResource("TileSet_oke54")
 script = ExtResource("3_1hpqy")
 
-[node name="Crop" type="TileMapLayer" parent="Dirt"]
-tile_set = SubResource("TileSet_0bwao")
-script = ExtResource("4_wp7h1")
-
 [node name="Select" type="TileMapLayer" parent="Dirt"]
 tile_set = SubResource("TileSet_t2ug0")
 script = ExtResource("5_0tsyo")
+
+[node name="Crop" type="TileMapLayer" parent="Dirt"]
+tile_set = SubResource("TileSet_0bwao")
+script = ExtResource("4_wp7h1")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

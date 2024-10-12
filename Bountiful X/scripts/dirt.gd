@@ -30,7 +30,11 @@ func harvest_tile():
 	
 	var data = $Crop.get_cell_tile_data(map_pos)
 	if $Crop.get_cell_source_id(map_pos) == 1: # Checks if the crop is grown
-		get_parent().get_parent().money += data.get_custom_data("price")
-		$Crop.erase_cell(map_pos) # Removes crop and resets dirt back to empty
-		set_cell(map_pos, 0, Vector2i(0, 0))
+		if $Crop.get_cell_atlas_coords(map_pos).x == 3:
+			get_parent().get_parent().money += data.get_custom_data("price")
+			$Crop.grow_tile(map_pos)
+		else:
+			get_parent().get_parent().money += data.get_custom_data("price")
+			$Crop.erase_cell(map_pos) # Removes crop and resets dirt back to empty
+			set_cell(map_pos, 0, Vector2i(0, 0))
 		
