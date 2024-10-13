@@ -35,6 +35,7 @@ func harvest_tile():
 			$Crop.grow_tile(map_pos)
 		else:
 			get_parent().get_parent().money += data.get_custom_data("price")
+			get_parent().get_parent().money_label.text = "$" + str(get_parent().get_parent().money)
 			$Crop.erase_cell(map_pos) # Removes crop and resets dirt back to empty
 			set_cell(map_pos, 0, Vector2i(0, 0))
 		
