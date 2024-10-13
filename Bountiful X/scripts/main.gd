@@ -100,40 +100,41 @@ func update_text():
 	$Pumpkin/Cost.text = str(price_list[2]) + " gold"
 	$Corn/Quantity.text = "x " + str(seed_count[3])
 	$Corn/Cost.text = str(price_list[3]) + " gold"
+	
 # Button signals from the shop, all do pretty much the same thing, buying a seed type and incrementing the seed count
 func _on_carrot_pressed() -> void:
 	$Farm.inventory_num = 3
-	select_inv_updater()
 	if money >= price_list[0]:
 		seed_count[0] += 1
 		money -= price_list[0]
 		$Carrot/Quantity.text = "x " + str(seed_count[0])
+	select_inv_updater()
 
 
 func _on_wheat_pressed() -> void:
 	$Farm.inventory_num = 4
-	select_inv_updater()
 	if money >= price_list[1]:
 		seed_count[1] += 1
 		money -= price_list[1]
 		$Wheat/Quantity.text = "x " + str(seed_count[1])
+	select_inv_updater()
 
 
 func _on_pumpkin_pressed() -> void:
 	$Farm.inventory_num = 5
-	select_inv_updater()
 	if money >= price_list[2]:
 		seed_count[2] += 1
 		money -= price_list[2]
 		$Pumpkin/Quantity.text = "x " + str(seed_count[2])
+	select_inv_updater()
 
 func _on_corn_pressed() -> void:
 	$Farm.inventory_num = 6
-	select_inv_updater()
 	if money >= price_list[3]:
 		seed_count[3] += 1
 		money -= price_list[3]
 		$Corn/Quantity.text = "x " + str(seed_count[3])
+	select_inv_updater()
 
 func on_intro_finished():
 	#print('intro finished')
@@ -178,4 +179,5 @@ func _on_sale_end_timeout():
 
 
 func _on_reset_timeout():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/title.tscn")

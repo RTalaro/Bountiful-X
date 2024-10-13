@@ -39,8 +39,8 @@ layout_mode = 1
 scale = Vector2(3.5, 3.5)
 
 [node name="Ui" type="Sprite2D" parent="."]
-position = Vector2(304, 55)
-scale = Vector2(3.5, 3.5)
+position = Vector2(305, 56)
+scale = Vector2(3.49519, 3.49375)
 texture = ExtResource("2_17iw5")
 centered = false
 
