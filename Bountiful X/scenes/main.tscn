@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c110xdrsqmod0"]
+[gd_scene load_steps=15 format=3 uid="uid://c110xdrsqmod0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_q3d33"]
 [ext_resource type="Texture2D" uid="uid://cy3l6ofl1kdsy" path="res://assets/ui/ui.png" id="2_17iw5"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://7p52kn417vag" path="res://assets/actions/water.png" id="9_3jjau"]
 [ext_resource type="Texture2D" uid="uid://cg6fcsh12o3ea" path="res://assets/select_inv.png" id="10_g0uch"]
 [ext_resource type="Texture2D" uid="uid://cutvfjrkcnhey" path="res://assets/actions/till.png" id="11_fjn6i"]
+[ext_resource type="Texture2D" uid="uid://ynimt2x8y58a" path="res://assets/sale/popup.png" id="13_lkm25"]
+[ext_resource type="AudioStream" uid="uid://dicj28j68jpm6" path="res://assets/tracks/discord-notification.mp3" id="14_jhgm2"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -45,12 +47,22 @@ centered = false
 [node name="TimerLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 894.0
-offset_top = 329.0
+offset_top = 456.0
 offset_right = 1034.0
-offset_bottom = 398.0
+offset_bottom = 525.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Timer"
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 889.0
+offset_top = 332.0
+offset_right = 1029.0
+offset_bottom = 401.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "100"
 
 [node name="QuotaLabel" type="Label" parent="."]
 layout_mode = 0
@@ -98,10 +110,12 @@ scale = Vector2(0.2, 0.2)
 icon = ExtResource("5_53lsa")
 
 [node name="Intro" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_j43fu")
 autoplay = true
 
 [node name="Loop" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("8_fmp4o")
 
 [node name="SaleTimer" type="Timer" parent="."]
@@ -133,6 +147,35 @@ position = Vector2(255, 255)
 scale = Vector2(5.1, 5.1)
 texture = ExtResource("10_g0uch")
 
+[node name="Popup" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(978, 597)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_lkm25")
+
+[node name="SaleLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 880.0
+offset_top = 606.0
+offset_right = 1047.0
+offset_bottom = 631.0
+text = "Carrot is now on sale!"
+
+[node name="SaleEnd" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Discord-notification" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+position = Vector2(1059, 441)
+stream = ExtResource("14_jhgm2")
+volume_db = 5.0
+
+[node name="Reset" type="Timer" parent="."]
+process_mode = 3
+wait_time = 3.0
+one_shot = true
+
 [connection signal="pressed" from="Wheat" to="." method="_on_wheat_pressed"]
 [connection signal="pressed" from="Carrot" to="." method="_on_carrot_pressed"]
 [connection signal="pressed" from="Corn" to="." method="_on_corn_pressed"]
@@ -140,3 +183,5 @@ texture = ExtResource("10_g0uch")
 [connection signal="timeout" from="SaleTimer" to="." method="_on_sale_timer_timeout"]
 [connection signal="pressed" from="Water" to="." method="_on_water_pressed"]
 [connection signal="pressed" from="Till" to="." method="_on_till_pressed"]
+[connection signal="timeout" from="SaleEnd" to="." method="_on_sale_end_timeout"]
+[connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]

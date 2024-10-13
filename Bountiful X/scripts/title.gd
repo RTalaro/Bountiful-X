@@ -13,25 +13,25 @@ func _ready():
 	options_button.button_down.connect(on_options_button_pressed)
 	quit_button.button_down.connect(on_quit_button_pressed)
 	
-	print('title ready')
+	#print('title ready')
 
 
 func on_play_button_pressed():
-	print('play')
+	#print('play')
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func on_options_button_pressed():
-	print('open options')
+	#print('open options')
 	get_tree().change_scene_to_file('res://scenes/options.tscn')
 
 
 func on_quit_button_pressed():
-	print('quit')
+	#print('quit')
 	get_tree().quit()
 
 
 func on_intro_finished():
-	print('intro finished')
+	#print('intro finished')
 	$Intro.queue_free()
 	$Loop.play()

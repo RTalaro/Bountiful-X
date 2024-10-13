@@ -19,7 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_mtlco")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(-125, 1)
+position = Vector2(-125, 0)
 scale = Vector2(3.10667, 3.60556)
 texture = ExtResource("2_av65k")
 centered = false

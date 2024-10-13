@@ -5,14 +5,6 @@ extends Control
 @export var tile_size = 16
 
 var inventory_num = 0 #1 water plants, 2 till soil, 3 carrot, 4 wheat, 5 pumpkin, 6 corn
-var tool_icon = {
-	1: load("res://assets/actions/water.png"),
-	2: load("res://assets/actions/till.png"),
-	3: load("res://assets/actions/carrot.png"),
-	4: load("res//assets/actions/wheat.png"),
-	5: load("res://assets/actions/pumpkin.png"),
-	6: load("res//assets/actions/corn.png")
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

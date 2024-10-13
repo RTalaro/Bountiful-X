@@ -1,9 +1,11 @@
 extends Control
 
-var money = 100
+var money = 50
 var quota = 20
-var timer = 60
+var increasing = 0
+var timer = 30
 var time_left = timer
+var round = 0
 
 var seed_count = [0, 0, 0, 0] # In order: carrot, wheat, pumpkin, corn
 var price_list = [10, 5, 20, 15] # In order: carrot, wheat, pumpkin, corn
@@ -14,10 +16,13 @@ var discount = 0
 
 @onready var timer_label = $TimerLabel
 @onready var quota_label = $QuotaLabel
+@onready var money_label = $MoneyLabel
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	quota_label.text = "$" + str(quota)
+	money_label.text = "$" + str(money)
 	$Intro.finished.connect(on_intro_finished)
 	
 	$Water/SelectInv.visible = false
@@ -28,7 +33,7 @@ func _ready() -> void:
 	$Corn/SelectInv.visible = false
 	
 	update_text()
-	print('farm ready')
+	#print('farm ready')
 	
 	start_timer()
 
@@ -38,11 +43,11 @@ func _process(delta) -> void:
 	if time_left > 0:
 		time_left -= delta
 		timer_label.text = str(floor(time_left)) + "s"
-		quota_label.text = "$" + str(quota)
 	else:
 		check_quota()
 		
 func select_inv_updater():
+	money_label.text = "$" + str(money)
 	$Water/SelectInv.visible = false
 	$Till/SelectInv.visible = false
 	
@@ -71,12 +76,20 @@ func start_timer() -> void:
 
 func check_quota() -> void:
 	if money >= quota:
-		print('quota met')
+		#print('quota met')
+		round += 1
 		money -= quota
-		quota += 20
+		quota += 30 + increasing
+		increasing += 10
+		quota_label.text = "$" + str(quota)
 		start_timer()
 	else:
-		get_tree().change_scene_to_file("res://scenes/title.tscn")
+		$"Discord-notification".play()
+		$SaleLabel.visible = true
+		$Popup.visible = true
+		$SaleLabel.text = "You survived " + str(round) + " rounds."
+		$Reset.start()
+		get_tree().paused = true
 
 func update_text():
 	$Carrot/Quantity.text = "x " + str(seed_count[0])
@@ -123,14 +136,28 @@ func _on_corn_pressed() -> void:
 		$Corn/Quantity.text = "x " + str(seed_count[3])
 
 func on_intro_finished():
-	print('intro finished')
+	#print('intro finished')
 	$Intro.queue_free()
 	$Loop.play()
 	
+func sale_notification(crop):
+	$"Discord-notification".play()
+	$SaleLabel.visible = true
+	$Popup.visible = true
+	$SaleEnd.start(4)
+	if crop == 0:
+		$SaleLabel.text = "Carrots are now on sale!"
+	elif crop == 1:
+		$SaleLabel.text = "Wheat is now on sale!"
+	elif crop == 2:
+		$SaleLabel.text = "Pumpkins are now on sale!"
+	elif crop == 3:
+		$SaleLabel.text = "Corn is now on sale!"
 
 func _on_sale_timer_timeout():
 	price_list[previous_discount] += discount # Restoring prices for previously discounted crop
 	var random = randi_range(0, 3)
+	sale_notification(random)
 	previous_discount = random
 	discount = int(price_list[random] * 0.4)
 	price_list[random] -= discount
@@ -143,3 +170,12 @@ func _on_water_pressed() -> void:
 
 func _on_till_pressed() -> void:
 	$Farm.inventory_num = 2
+
+
+func _on_sale_end_timeout():
+	$SaleLabel.visible = false
+	$Popup.visible = false
+
+
+func _on_reset_timeout():
+	get_tree().change_scene_to_file("res://scenes/title.tscn")
