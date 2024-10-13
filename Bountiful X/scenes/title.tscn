@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://do38kc77ic6wn"]
+[gd_scene load_steps=9 format=3 uid="uid://do38kc77ic6wn"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_mtlco"]
 [ext_resource type="AudioStream" uid="uid://b6d7kudldhitr" path="res://assets/tracks/intro.mp3" id="2_6c0ij"]
 [ext_resource type="Texture2D" uid="uid://cx7ssjsdkfx" path="res://assets/ui/title_screen.png" id="2_av65k"]
 [ext_resource type="AudioStream" uid="uid://drd2ih0h2s2wg" path="res://assets/tracks/loop.mp3" id="3_yiu27"]
+[ext_resource type="Texture2D" uid="uid://exaeywbfld0h" path="res://assets/title_assets/exit_button.png" id="5_1t1w7"]
+[ext_resource type="Texture2D" uid="uid://cwvfsbc4qbpe1" path="res://assets/title_assets/start_button.png" id="5_a7jvn"]
+[ext_resource type="Texture2D" uid="uid://m7fn21q7qhhu" path="res://assets/title_assets/info_button.png" id="6_hb2rq"]
+[ext_resource type="Texture2D" uid="uid://cohpvwqld3mbb" path="res://assets/title_assets/title_card.png" id="8_64edc"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -40,41 +44,68 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.027451, 0.619608, 0.647059, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Bountiful X"
-horizontal_alignment = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
 alignment = 1
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
-text = "Play"
-
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
-text = "Options"
-
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
-text = "Quit"
-
 [node name="Intro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_6c0ij")
+volume_db = -75.0
 autoplay = true
 
 [node name="Loop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_yiu27")
 autoplay = true
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+offset_left = 536.0
+offset_top = 388.0
+offset_right = 616.0
+offset_bottom = 424.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Play"
+flat = true
+
+[node name="Options" type="Button" parent="."]
+layout_mode = 2
+offset_left = 544.0
+offset_top = 434.0
+offset_right = 609.0
+offset_bottom = 470.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Info"
+flat = true
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 546.0
+offset_top = 479.0
+offset_right = 606.0
+offset_bottom = 515.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+flat = true
+
+[node name="ExitButton" type="Sprite2D" parent="."]
+position = Vector2(576, 497)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_1t1w7")
+
+[node name="InfoButton" type="Sprite2D" parent="."]
+position = Vector2(579, 452)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_hb2rq")
+
+[node name="StartButton" type="Sprite2D" parent="."]
+position = Vector2(576, 406)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_a7jvn")
+
+[node name="TitleCard" type="Sprite2D" parent="."]
+position = Vector2(577, 273)
+scale = Vector2(4, 4)
+texture = ExtResource("8_64edc")

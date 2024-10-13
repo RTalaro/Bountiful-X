@@ -1,8 +1,8 @@
 extends Control
 
-@onready var play_button = $MarginContainer/VBoxContainer2/VBoxContainer/Play
-@onready var options_button = $MarginContainer/VBoxContainer2/VBoxContainer/Options
-@onready var quit_button = $MarginContainer/VBoxContainer2/VBoxContainer/Quit
+@onready var play_button = $Play
+@onready var options_button = $Options
+@onready var quit_button = $Quit
 
 
 # Called when the node enters the scene tree for the first time.
